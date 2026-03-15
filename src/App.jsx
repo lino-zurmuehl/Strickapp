@@ -125,11 +125,46 @@ const wordsToNumber = (text) => {
 }
 
 const getVoiceCommand = (phrase) => {
+  const compact = phrase.toLowerCase().replace(/\s+/g, '')
+  const signedNumber = compact.match(/^([+-])(\d+)$/)
+  if (signedNumber) {
+    const [, sign, amountRaw] = signedNumber
+    const amount = Number(amountRaw)
+    if (Number.isFinite(amount) && amount > 0) {
+      return {
+        type: 'counter',
+        direction: sign === '+' ? 'up' : 'down',
+        target: 'main',
+        amount,
+      }
+    }
+  }
+
   const normalized = phrase
     .toLowerCase()
-    .replace(/[^a-z0-9äöüß\s]/gi, ' ')
+    .replace(/[^a-z0-9äöüß+\-\s]/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim()
+
+  const simplePlus = normalized.match(/^(?:\+|plus)\s*(\d+)$/)
+  if (simplePlus) {
+    return {
+      type: 'counter',
+      direction: 'up',
+      target: 'main',
+      amount: Number(simplePlus[1]),
+    }
+  }
+
+  const simpleMinus = normalized.match(/^(?:-|minus)\s*(\d+)$/)
+  if (simpleMinus) {
+    return {
+      type: 'counter',
+      direction: 'down',
+      target: 'main',
+      amount: Number(simpleMinus[1]),
+    }
+  }
 
   const plusMatch = normalized.match(/(?:plus|hoch(?:zählen|zahlen)?|erhöhen)(?:\s+(\S+))?/) ||
     normalized.match(/(?:hauptzähler|hauptzahler)\s+plus(?:\s+(\S+))?/) ||
