@@ -13,18 +13,20 @@
 html,
 body,
 #root {
-  margin: 0;
   min-height: 100%;
-  background: radial-gradient(circle at top right, #d7e9ff 0%, #f7faff 42%), #f7faff;
+  margin: 0;
 }
 
 body {
-  color: #1f2937;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(175, 196, 222, 0.42) 0%, rgba(244, 241, 236, 0.8) 46%, rgba(244, 241, 236, 1) 100%),
+    linear-gradient(160deg, #ede8e1 0%, #f4f1ec 56%, #e7ecf4 100%);
+  color: #232b36;
 }
 
+button,
 input,
 textarea,
-button,
 select {
   font: inherit;
 }
@@ -35,8 +37,7 @@ button {
 }
 
 .app-shell {
-  --shadow-soft: 0 10px 24px rgba(47, 76, 120, 0.12);
-  width: min(100%, 520px);
+  width: min(100%, 540px);
   margin: 0 auto;
   padding: 16px 14px 24px;
   display: grid;
@@ -44,123 +45,143 @@ button {
   color: var(--ink);
 }
 
-.top-card,
+.counter-card,
+.tools-row,
+.timer-card,
+.notes-card,
+.voice-card,
+.project-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(172, 184, 201, 0.26);
+  border-radius: 26px;
+  box-shadow: 0 14px 28px rgba(52, 45, 40, 0.07);
+}
+
 .counter-card,
 .timer-card,
 .notes-card,
 .voice-card,
-.tools-row {
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: var(--shadow-soft);
+.project-card {
+  padding: 16px;
 }
 
-.top-card,
-.counter-card,
-.timer-card,
-.notes-card,
-.voice-card {
-  padding: 14px;
+.top-voice {
+  background:
+    linear-gradient(160deg, rgba(107, 35, 43, 0.1), rgba(175, 196, 222, 0.16));
+  border-color: rgba(107, 35, 43, 0.2);
 }
 
-.project-switcher {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
+.voice-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 8px;
 }
 
-.project-switcher select,
-.project-meta input,
-.step-control input,
-.notes-card textarea {
-  border: 1px solid #d2dfef;
-  border-radius: 12px;
-  padding: 8px 10px;
-  width: 100%;
-  background: #fff;
+.voice-card h2,
+.notes-card label {
+  margin: 0;
+  font-size: 1.95rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
-.project-meta {
-  margin-top: 8px;
-  display: grid;
-  gap: 8px;
+.voice-card h2 {
+  font-size: 1.45rem;
 }
 
-.small-btn {
-  padding: 8px 12px;
-  border-radius: 12px;
-  background: var(--baby-blue);
-  color: #092145;
-  font-weight: 600;
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--bordeaux);
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
-.small-btn.danger {
-  background: #f6dce4;
-  color: #521026;
+.switch input {
+  width: 42px;
+  height: 24px;
+  accent-color: var(--bordeaux);
+}
+
+.voice-warning {
+  color: var(--bordeaux);
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.voice-help {
+  color: rgba(35, 43, 54, 0.78);
+  line-height: 1.45;
 }
 
 .counter-card.main {
-  background: linear-gradient(135deg, color-mix(in srgb, var(--baby-blue) 76%, white), #ffffff);
+  background:
+    linear-gradient(175deg, rgba(107, 35, 43, 0.14), rgba(255, 255, 255, 0.75));
+  border-color: rgba(107, 35, 43, 0.24);
 }
 
 .counter-card.secondary {
-  border: 1px solid #d6e5f8;
+  border-color: rgba(175, 196, 222, 0.65);
 }
 
 .counter-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
-  font-weight: 600;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
 .link-btn {
   background: transparent;
   color: var(--bordeaux);
-  font-weight: 600;
+  font-weight: 700;
   padding: 4px 2px;
 }
 
 .count-display {
   width: 100%;
-  border-radius: 18px;
-  border: 1px solid #c2d8f4;
-  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(107, 35, 43, 0.22);
+  background: rgba(255, 255, 255, 0.78);
   color: var(--bordeaux);
-  font-size: clamp(3rem, 12vw, 5.4rem);
-  font-weight: 300;
-  letter-spacing: 1px;
+  font-size: clamp(3.2rem, 13vw, 5.8rem);
   line-height: 1;
-  padding: 16px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  padding: 18px;
 }
 
 .counter-actions {
-  margin-top: 12px;
+  margin-top: 14px;
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .round-btn {
-  width: 88px;
-  height: 88px;
+  width: 94px;
+  height: 94px;
   border-radius: 50%;
-  font-size: 2.2rem;
-  background: #eff5ff;
+  border: 3px solid rgba(175, 196, 222, 0.62);
+  font-size: 2.3rem;
+  background: rgba(175, 196, 222, 0.22);
   color: var(--bordeaux);
-  border: 2px solid #d2dff2;
 }
 
 .round-btn.plus {
-  background: color-mix(in srgb, var(--bordeaux) 20%, white);
-  border-color: color-mix(in srgb, var(--bordeaux) 35%, white);
+  border-color: rgba(107, 35, 43, 0.32);
+  background: rgba(107, 35, 43, 0.16);
 }
 
 .round-btn.small {
-  width: 52px;
-  height: 52px;
-  font-size: 1.6rem;
+  width: 58px;
+  height: 58px;
+  font-size: 1.65rem;
 }
 
 .secondary-row {
@@ -171,13 +192,13 @@ button {
 }
 
 .mini-count {
+  min-width: 120px;
+  border-radius: 14px;
+  border: 1px solid rgba(175, 196, 222, 0.6);
+  background: rgba(255, 255, 255, 0.8);
   padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid #d2dfef;
-  background: #fff;
-  min-width: 104px;
-  font-size: 1.8rem;
   color: var(--bordeaux);
+  font-size: 2rem;
 }
 
 .counter-actions.compact {
@@ -187,92 +208,111 @@ button {
 }
 
 .tools-row {
-  padding: 10px 12px;
+  padding: 12px 14px;
   display: flex;
-  align-items: end;
   justify-content: space-between;
-  gap: 10px;
+  align-items: end;
+  gap: 8px;
 }
 
 .step-control {
   display: grid;
   gap: 6px;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.step-control input,
+.project-switcher select,
+.project-meta input,
+.notes-card textarea {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(175, 196, 222, 0.78);
+  background: rgba(255, 255, 255, 0.84);
+  padding: 10px 12px;
+  color: var(--ink);
 }
 
 .step-control input {
-  width: 96px;
+  width: 94px;
+}
+
+.small-btn {
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-weight: 700;
+  background: rgba(175, 196, 222, 0.82);
+  color: #20344b;
+}
+
+.small-btn.danger {
+  background: rgba(107, 35, 43, 0.2);
+  color: var(--bordeaux);
 }
 
 .timer-card {
-  background: linear-gradient(165deg, #ffffff, #edf4ff);
+  background: linear-gradient(170deg, rgba(107, 35, 43, 0.08), rgba(175, 196, 222, 0.17));
 }
 
 .time-value {
-  margin: 0;
-  font-size: clamp(2rem, 9vw, 3rem);
-  color: var(--bordeaux);
-  text-align: center;
+  margin: 6px 0;
+  font-size: clamp(2.25rem, 11vw, 4rem);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 1px;
+  text-align: center;
+  color: var(--bordeaux);
+  letter-spacing: 1.2px;
+  font-weight: 300;
 }
 
 .timer-controls {
-  margin-top: 10px;
+  margin-top: 8px;
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-.notes-card label,
-.voice-card h2 {
-  font-size: 1rem;
-  margin: 0 0 8px;
-  font-weight: 700;
-}
-
 .notes-card textarea {
-  min-height: 100px;
+  min-height: 160px;
   resize: vertical;
+  margin-top: 8px;
 }
 
 .notes-card small {
   display: block;
-  margin-top: 6px;
+  margin-top: 8px;
   text-align: right;
-  color: #60728f;
+  color: rgba(39, 57, 87, 0.72);
+  font-size: 1.05rem;
 }
 
-.voice-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.project-card {
+  background: linear-gradient(160deg, rgba(175, 196, 222, 0.22), rgba(255, 255, 255, 0.82));
+}
+
+.project-switcher {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
   gap: 8px;
 }
 
-.switch {
-  display: flex;
-  align-items: center;
+.project-meta {
+  margin-top: 8px;
+  display: grid;
   gap: 8px;
 }
 
-.switch input {
-  width: 44px;
-  accent-color: var(--bordeaux);
-}
+@media (max-width: 380px) {
+  .voice-card h2 {
+    font-size: 1.18rem;
+  }
 
-.voice-warning {
-  color: var(--bordeaux);
-}
-
-.voice-help {
-  color: #4e5f79;
-  font-size: 0.92rem;
-}
-
-@media (max-width: 360px) {
   .round-btn {
-    width: 76px;
-    height: 76px;
+    width: 84px;
+    height: 84px;
+  }
+
+  .project-switcher {
+    grid-template-columns: 1fr;
   }
 }

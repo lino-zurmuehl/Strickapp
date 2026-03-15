@@ -4,10 +4,10 @@ const STORAGE_KEY = 'strickapp_state_v1'
 const MAX_NOTE_LENGTH = 1000
 
 const DEFAULT_THEME = {
-  babyBlue: '#9EC9FF',
-  bordeaux: '#7A1E3A',
-  background: '#F7FAFF',
-  ink: '#1F2937',
+  babyBlue: '#AFC4DE',
+  bordeaux: '#6B232B',
+  background: '#F4F1EC',
+  ink: '#232B36',
 }
 
 const makeId = () => {
@@ -493,53 +493,32 @@ function App() {
         '--ink': DEFAULT_THEME.ink,
       }}
     >
-      <header className="top-card">
-        <div className="project-switcher">
-          <select
-            value={state.selectedProjectId}
-            onChange={(event) => setState((prev) => ({ ...prev, selectedProjectId: event.target.value }))}
-          >
-            {state.projects.map((project) => (
-              <option key={project.id} value={project.id}>
-                {project.name}
-              </option>
-            ))}
-          </select>
-          <button type="button" onClick={addProject} className="small-btn">+ Projekt</button>
-          <button type="button" onClick={deleteProject} className="small-btn danger">Löschen</button>
+      <section className="voice-card top-voice">
+        <div className="voice-head">
+          <h2>Sprachsteuerung (Deutsch)</h2>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={state.voiceEnabled}
+              disabled={!speechSupported}
+              onChange={(event) => setState((prev) => ({ ...prev, voiceEnabled: event.target.checked }))}
+            />
+            <span>{state.voiceEnabled ? 'An' : 'Aus'}</span>
+          </label>
         </div>
-
-        <div className="project-meta">
-          <input
-            key={`name-${selectedProject.id}`}
-            type="text"
-            defaultValue={selectedProject.name}
-            onBlur={(event) => {
-              const value = event.target.value.trim()
-              updateProject((project) => ({
-                ...project,
-                name: value || project.name,
-              }))
-            }}
-            placeholder="Projektname"
-            maxLength={60}
-          />
-          <input
-            key={`label-${selectedProject.id}`}
-            type="text"
-            defaultValue={selectedProject.sectionLabel}
-            onBlur={(event) => {
-              const value = event.target.value.trim()
-              updateProject((project) => ({
-                ...project,
-                sectionLabel: value || project.sectionLabel,
-              }))
-            }}
-            placeholder="Teil / Bereich"
-            maxLength={60}
-          />
-        </div>
-      </header>
+        {!speechSupported ? (
+          <p className="voice-warning">
+            Diese Safari-Version unterstützt keine Spracherkennung. Alle Funktionen bleiben per Tippen nutzbar.
+          </p>
+        ) : (
+          <>
+            <p>{voiceStatus}</p>
+            <p className="voice-help">
+              Beispiele: "plus eins", "minus eins", "nebenzähler plus zwei", "timer starten", "timer stoppen", "zurück".
+            </p>
+          </>
+        )}
+      </section>
 
       <section className="counter-card main">
         <div className="counter-head">
@@ -644,31 +623,52 @@ function App() {
         <small>{selectedProject.notes.length}/{MAX_NOTE_LENGTH}</small>
       </section>
 
-      <section className="voice-card">
-        <div className="voice-head">
-          <h2>Sprachsteuerung (Deutsch)</h2>
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={state.voiceEnabled}
-              disabled={!speechSupported}
-              onChange={(event) => setState((prev) => ({ ...prev, voiceEnabled: event.target.checked }))}
-            />
-            <span>{state.voiceEnabled ? 'An' : 'Aus'}</span>
-          </label>
+      <section className="project-card">
+        <div className="project-switcher">
+          <select
+            value={state.selectedProjectId}
+            onChange={(event) => setState((prev) => ({ ...prev, selectedProjectId: event.target.value }))}
+          >
+            {state.projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
+              </option>
+            ))}
+          </select>
+          <button type="button" onClick={addProject} className="small-btn">+ Projekt</button>
+          <button type="button" onClick={deleteProject} className="small-btn danger">Löschen</button>
         </div>
-        {!speechSupported ? (
-          <p className="voice-warning">
-            Diese Safari-Version unterstützt keine Spracherkennung. Alle Funktionen bleiben per Tippen nutzbar.
-          </p>
-        ) : (
-          <>
-            <p>{voiceStatus}</p>
-            <p className="voice-help">
-              Beispiele: "plus eins", "minus eins", "nebenzähler plus zwei", "timer starten", "timer stoppen", "zurück".
-            </p>
-          </>
-        )}
+
+        <div className="project-meta">
+          <input
+            key={`name-${selectedProject.id}`}
+            type="text"
+            defaultValue={selectedProject.name}
+            onBlur={(event) => {
+              const value = event.target.value.trim()
+              updateProject((project) => ({
+                ...project,
+                name: value || project.name,
+              }))
+            }}
+            placeholder="Projektname"
+            maxLength={60}
+          />
+          <input
+            key={`label-${selectedProject.id}`}
+            type="text"
+            defaultValue={selectedProject.sectionLabel}
+            onBlur={(event) => {
+              const value = event.target.value.trim()
+              updateProject((project) => ({
+                ...project,
+                sectionLabel: value || project.sectionLabel,
+              }))
+            }}
+            placeholder="Teil / Bereich"
+            maxLength={60}
+          />
+        </div>
       </section>
     </main>
   )
