@@ -493,33 +493,6 @@ function App() {
         '--ink': DEFAULT_THEME.ink,
       }}
     >
-      <section className="voice-card top-voice">
-        <div className="voice-head">
-          <h2>Sprachsteuerung (Deutsch)</h2>
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={state.voiceEnabled}
-              disabled={!speechSupported}
-              onChange={(event) => setState((prev) => ({ ...prev, voiceEnabled: event.target.checked }))}
-            />
-            <span>{state.voiceEnabled ? 'An' : 'Aus'}</span>
-          </label>
-        </div>
-        {!speechSupported ? (
-          <p className="voice-warning">
-            Diese Safari-Version unterstützt keine Spracherkennung. Alle Funktionen bleiben per Tippen nutzbar.
-          </p>
-        ) : (
-          <>
-            <p>{voiceStatus}</p>
-            <p className="voice-help">
-              Beispiele: "plus eins", "minus eins", "nebenzähler plus zwei", "timer starten", "timer stoppen", "zurück".
-            </p>
-          </>
-        )}
-      </section>
-
       <section className="counter-card main">
         <div className="counter-head">
           <span>Hauptzähler</span>
@@ -572,6 +545,33 @@ function App() {
             <button type="button" onClick={() => applyCounterChange('second', 1)} className="round-btn small plus">+</button>
           </div>
         </div>
+      </section>
+
+      <section className="voice-card top-voice">
+        <div className="voice-head">
+          <h2>Sprachsteuerung (Deutsch)</h2>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={state.voiceEnabled}
+              disabled={!speechSupported}
+              onChange={(event) => setState((prev) => ({ ...prev, voiceEnabled: event.target.checked }))}
+            />
+            <span>{state.voiceEnabled ? 'An' : 'Aus'}</span>
+          </label>
+        </div>
+        {!speechSupported ? (
+          <p className="voice-warning">
+            Diese Safari-Version unterstützt keine Spracherkennung. Alle Funktionen bleiben per Tippen nutzbar.
+          </p>
+        ) : (
+          <>
+            <p>{voiceStatus}</p>
+            <p className="voice-help">
+              Beispiele: "plus eins", "minus eins", "nebenzähler plus zwei", "timer starten", "timer stoppen", "zurück".
+            </p>
+          </>
+        )}
       </section>
 
       <section className="tools-row">
