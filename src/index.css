@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Avenir Next', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top right, #d7e9ff 0%, #f7faff 42%), #f7faff;
+}
+
+body {
+  color: #1f2937;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+.app-shell {
+  --shadow-soft: 0 10px 24px rgba(47, 76, 120, 0.12);
+  width: min(100%, 520px);
+  margin: 0 auto;
+  padding: 16px 14px 24px;
+  display: grid;
+  gap: 12px;
+  color: var(--ink);
+}
+
+.top-card,
+.counter-card,
+.timer-card,
+.notes-card,
+.voice-card,
+.tools-row {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.top-card,
+.counter-card,
+.timer-card,
+.notes-card,
+.voice-card {
+  padding: 14px;
+}
+
+.project-switcher {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+}
+
+.project-switcher select,
+.project-meta input,
+.step-control input,
+.notes-card textarea {
+  border: 1px solid #d2dfef;
+  border-radius: 12px;
+  padding: 8px 10px;
+  width: 100%;
+  background: #fff;
+}
+
+.project-meta {
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
+}
+
+.small-btn {
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--baby-blue);
+  color: #092145;
+  font-weight: 600;
+}
+
+.small-btn.danger {
+  background: #f6dce4;
+  color: #521026;
+}
+
+.counter-card.main {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--baby-blue) 76%, white), #ffffff);
+}
+
+.counter-card.secondary {
+  border: 1px solid #d6e5f8;
+}
+
+.counter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.link-btn {
+  background: transparent;
+  color: var(--bordeaux);
+  font-weight: 600;
+  padding: 4px 2px;
+}
+
+.count-display {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid #c2d8f4;
+  background: #fff;
+  color: var(--bordeaux);
+  font-size: clamp(3rem, 12vw, 5.4rem);
+  font-weight: 300;
+  letter-spacing: 1px;
+  line-height: 1;
+  padding: 16px;
+}
+
+.counter-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.round-btn {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  font-size: 2.2rem;
+  background: #eff5ff;
+  color: var(--bordeaux);
+  border: 2px solid #d2dff2;
+}
+
+.round-btn.plus {
+  background: color-mix(in srgb, var(--bordeaux) 20%, white);
+  border-color: color-mix(in srgb, var(--bordeaux) 35%, white);
+}
+
+.round-btn.small {
+  width: 52px;
+  height: 52px;
+  font-size: 1.6rem;
+}
+
+.secondary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mini-count {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #d2dfef;
+  background: #fff;
+  min-width: 104px;
+  font-size: 1.8rem;
+  color: var(--bordeaux);
+}
+
+.counter-actions.compact {
+  margin: 0;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.tools-row {
+  padding: 10px 12px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.step-control {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.step-control input {
+  width: 96px;
+}
+
+.timer-card {
+  background: linear-gradient(165deg, #ffffff, #edf4ff);
+}
+
+.time-value {
+  margin: 0;
+  font-size: clamp(2rem, 9vw, 3rem);
+  color: var(--bordeaux);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+
+.timer-controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.notes-card label,
+.voice-card h2 {
+  font-size: 1rem;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.notes-card textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.notes-card small {
+  display: block;
+  margin-top: 6px;
+  text-align: right;
+  color: #60728f;
+}
+
+.voice-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.switch input {
+  width: 44px;
+  accent-color: var(--bordeaux);
+}
+
+.voice-warning {
+  color: var(--bordeaux);
+}
+
+.voice-help {
+  color: #4e5f79;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 360px) {
+  .round-btn {
+    width: 76px;
+    height: 76px;
+  }
+}
